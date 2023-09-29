@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,13 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
-
-
-
-        String url="https://run.mocky.io/v3/7d5252d4-baae-4133-9af2-60820273fa0b";
+        String url="https://run.mocky.io/v3/2f78b077-2efd-496d-8d31-41700fe4e39c";
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonArrayRequest joRequest=new JsonArrayRequest(
                 Request.Method.GET,
@@ -87,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                             String name = sa.getJSONObject(position).getString("make")+" "+sa.getJSONObject(position).getString("model");
                                             String year = sa.getJSONObject(position).getString("year");
                                             String price = sa.getJSONObject(position).getString("price");
+                                            Boolean isFO = sa.getJSONObject(position).getBoolean("isFullOption");
                                             String url = sa.getJSONObject(position).getString("image");
 
                                             TextView textname = findViewById(R.id.name);
@@ -97,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
                                             TextView textPrice = findViewById(R.id.price);
                                             textPrice.setText(price);
+
+                                            Switch fullOp = findViewById(R.id.fo);
+                                            fullOp.setChecked(isFO);
+                                            fullOp.setEnabled(false);
 
                                             ImageView imageView = findViewById(R.id.image);
 
